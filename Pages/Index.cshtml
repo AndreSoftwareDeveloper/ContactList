@@ -1,0 +1,31 @@
+﻿@page
+@model ContactList.Pages.IndexModel
+@{
+    ViewData["Title"] = "Contact List";
+}
+
+<h2>Contact List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var contact in Model.listContacts)
+        {
+            <tr>
+                <td>@contact.firstName</td>
+                <td>@contact.lastName</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="contactId" value="@contact.id" />
+                        <button type="submit" name="detailsButton">SZCZEGÓŁY</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
