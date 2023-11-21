@@ -16,16 +16,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Andriej\source\repos\ContactList\ContactList
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Andriej/source/repos/ContactList/ContactList/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Andriej/source/repos/ContactList/ContactList/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Andriej/source/repos/ContactList/ContactList/Pages/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Andriej/source/repos/ContactList/ContactList/Pages/Shared/_ValidationScriptsPartial.cshtml]
