@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace ContactList.Pages
 {
@@ -26,7 +27,6 @@ namespace ContactList.Pages
             { 
                 //TODO login data verification
                 loggedInUserEmail = LoginForm.Email; //TODO security
-                debug = "xxvvv";
                 try
                 {
                     String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=clients;Integrated Security=True";
@@ -47,7 +47,7 @@ namespace ContactList.Pages
                                     string password = reader.GetString(4);
                                     string category = reader.GetString(5);
                                     string subCategory = reader.IsDBNull(6) ? null : reader.GetString(6);
-                                    //int phone = reader.GetInt32(7); //tu przestaje działać                                
+                                    //int phone = reader.GetInt32(7);                                
                                     string birthDate = reader.GetDateTime(8).ToString("yyyy-MM-dd");
 
                                     ContactInfo contactInfo = new ContactInfo(firstName, lastName, email, password, category, subCategory, 111222333, birthDate);
@@ -61,8 +61,12 @@ namespace ContactList.Pages
                 {
                     Console.WriteLine("Exception: " + ex.ToString());
                 }
-                //return RedirectToPage();
             }
+            return Page();
+        }
+        public IActionResult OnPostDelete(int contactId)
+        {
+            debug = "deleted";
             return Page();
         }
 
@@ -93,7 +97,7 @@ namespace ContactList.Pages
                                 string password = reader.GetString(4);                                
                                 string category = reader.GetString(5);                                
                                 string subCategory = reader.IsDBNull(6) ? null : reader.GetString(6);                             
-                                //int phone = reader.GetInt32(7); //tu przestaje działać                                
+                                //int phone = reader.GetInt32(7);                             
                                 string birthDate = reader.GetDateTime(8).ToString("yyyy-MM-dd");
 
                                 ContactInfo contactInfo = new ContactInfo(firstName, lastName, email, password, category, subCategory, 111222333, birthDate);
@@ -107,11 +111,6 @@ namespace ContactList.Pages
             {
                 Console.WriteLine("Exception: " + ex.ToString());
             }
-        }
-
-        public void OnPost([FromQuery] string email, [FromQuery] string password)
-        {
-            debug = "qqq";
         }
 
         public class ContactInfo

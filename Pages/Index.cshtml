@@ -61,7 +61,11 @@
                 @if (Model.loggedInUserEmail != "")
                 {
                     <td> <button type="button" name="addButton">EDIT</button> </td> //TODO logic for buttons for logged user
-                    <td> <button type="button" name="addButton">DELETE</button> </td>
+                    <td>
+                        <form method="post" asp-page-handler="Delete" asp-route-contactId="@contact.id">
+                            <button type="submit" name="deleteButton">DELETE</button>
+                        </form>
+                    </td>
                 }
             </tr>
         }
