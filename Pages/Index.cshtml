@@ -60,7 +60,11 @@
                 </td>
                 @if (Model.loggedInUserEmail != "")
                 {
-                    <td> <button type="button" name="addButton">EDIT</button> </td> //TODO logic for buttons for logged user
+                    <td>
+                        <form method="post" asp-page-handler="Edit" asp-route-contactId="@contact.id">
+                            <button type="submit" name="editButton"> EDIT </button>
+                        </form>
+                    </td>
                     <td>
                         <form method="post" asp-page-handler="Delete" asp-route-contactId="@contact.id">
                             <button type="submit" name="deleteButton">DELETE</button>
@@ -72,7 +76,66 @@
         <tr>
             @if (Model.loggedInUserEmail != "")
             {
-                <td> <button type="button" name="addButton">ADD NEW CONTACT</button> </td>
+                <button type="submit" id="addButton" onclick="showAddForm(this)"> ADD NEW CONTACT </button>
+
+                <div id="addForm">
+                <form method="post" asp-page-handler="Add">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="AddForm.Email"></label>
+                        <input asp-for="AddForm.Email" class="form-control" />
+                        <span asp-validation-for="AddForm.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AddForm.Password"></label>
+                        <input asp-for="AddForm.Password" type="password" class="form-control" />
+                        <span asp-validation-for="AddForm.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AddForm.FirstName"></label>
+                        <input asp-for="AddForm.FirstName" class="form-control" />
+                        <span asp-validation-for="AddForm.FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AddForm.LastName"></label>
+                        <input asp-for="AddForm.LastName" class="form-control" />
+                        <span asp-validation-for="AddForm.LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AddForm.Category"></label>
+                        <select asp-for="AddForm.Category" class="form-control">
+                            <option value="Category1">Category 1</option>
+                            <option value="Category2">Category 2</option>
+                        </select>
+                        <span asp-validation-for="AddForm.Category" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AddForm.Subcategory"></label>
+                        <input asp-for="AddForm.Subcategory" class="form-control" />
+                        <span asp-validation-for="AddForm.Subcategory" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AddForm.Phone"></label>
+                            <input asp-for="AddForm.Phone" class="form-control" />
+                            <span asp-validation-for="AddForm.Phone" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AddForm.DateOfBirth"></label>
+                        <input asp-for="AddForm.DateOfBirth" type="date" class="form-control" />
+                        <span asp-validation-for="AddForm.DateOfBirth" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                </div>
             }
         </tr>
     </tbody>
@@ -101,6 +164,11 @@
         logInForm.style.display = 'block';
         document.getElementById("loginButton").style.display = 'none';
     }
+
+    function showAddForm() {
+        document.getElementById("addForm").style.display = 'block';
+        document.getElementById("addButton").style.display = 'none';
+    }
 </script>
 
 <style>
@@ -121,6 +189,14 @@
     }
 
     #loginButton {
+        display: block;
+    }
+
+    #addForm {
+        display: none;
+    }
+
+    #addButton {
         display: block;
     }
 </style>
